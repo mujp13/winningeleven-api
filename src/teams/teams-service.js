@@ -1,8 +1,8 @@
 const xss = require("xss");
 
 const TeamsService = {
-  getAllTeam(db, user_id) {
-    return db.select("*").from("winning_teams");
+  getAllTeams(db, user_id) {
+    return db.select("*").from("winning_teams").where("user_id", user_id);
   },
   insertTeam(db, newTeam, players) {
     return db
@@ -10,16 +10,33 @@ const TeamsService = {
       .into("winning_teams")
       .returning("*")
       .then((rows) => {
-        //return rows[0];
-        return players.map((player) =>
-          db
-            .insert({
-              team_id: rows[0].id,
-              player_id: player.id,
-            })
+        players.map((player) => {
+          db.insert({
+            team_id: rows[0].id,
+            player_id: player.id,
+          })
             .into("winning_team_players")
-        );
+            .catch(console.log);
+          console.log(rows[0].id);
+          console.log(player.id);
+        });
+        return rows[0];
       });
+  },
+  getTeamPlayers(db, team_id) {
+    return db
+      .select("*")
+      .from("winning_team_players")
+      .join(
+        "winning_players",
+        "winning_team_players.player_id",
+        "=",
+        "winning_players.id"
+      )
+      .where("team_id", team_id);
+  },
+  getTeamById(db, team_id) {
+    return db.select("*").from("winning_teams").where("id", team_id);
   },
 };
 

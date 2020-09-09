@@ -9,7 +9,7 @@ const jsonParser = express.json();
 TeamsRouter.use(requireAuth)
   .route("/")
   .get((req, res, next) => {
-    TeamsService.getAllContents(req.app.get("db"))
+    TeamsService.getAllTeams(req.app.get("db"), req.user.id)
       .then((contents) => {
         res.json(contents);
       })
@@ -22,6 +22,20 @@ TeamsRouter.use(requireAuth)
     TeamsService.insertTeam(req.app.get("db"), newTeam, players)
       .then((team) => {
         res.status(201).json(team);
+      })
+      .catch(next);
+  });
+
+TeamsRouter.use(requireAuth)
+  .route("/:team_id")
+  .get((req, res, next) => {
+    TeamsService.getTeamPlayers(req.app.get("db"), req.params.team_id)
+      .then((teamplayer) => {
+        TeamsService.getTeamById(req.app.get("db"), req.params.team_id).then(
+          (team) => {
+            res.json({ team: team[0], teamplayer });
+          }
+        );
       })
       .catch(next);
   });

@@ -10,5 +10,5 @@ CREATE TABLE winning_users (
 
 ALTER TABLE winning_teams
   ADD COLUMN
-    team_id INTEGER REFERENCES winning_users(id)
+    user_id INTEGER REFERENCES winning_users(id)
     ON DELETE SET NULL;
