@@ -1,4 +1,4 @@
-# Blogful API Auth!
+# Winning Eleven API Auth!
 
 ## Scripts
 
