@@ -13,8 +13,8 @@
     "deploy": "git push heroku master"
   },
   "keywords": [],
-  "author": "Thomas `tomatao` Hudspith-Tatham <iammotivated@gmail.com>",
-  "license": "MIT",
+  "author": "Keun Suk Park",
+  "license": "unknown",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
