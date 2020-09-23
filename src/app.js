@@ -3,7 +3,6 @@ const morgan = require("morgan");
 const cors = require("cors");
 const helmet = require("helmet");
 const { NODE_ENV } = require("./config");
-const articlesRouter = require("./teams/teams-router");
 const authRouter = require("./auth/auth-router");
 const usersRouter = require("./users/users-router");
 const playersRouter = require("./players/players-router");
@@ -19,7 +18,6 @@ app.use(
 app.use(cors());
 app.use(helmet());
 
-//app.use('/api/articles', articlesRouter)
 app.use("/api/auth", authRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/players", playersRouter);
@@ -27,6 +25,7 @@ app.use("/api/teams", teamsRouter);
 
 app.use(function errorHandler(error, req, res, next) {
   let response;
+  console.error(error);
   if (NODE_ENV === "production") {
     response = { error: "Server error" };
   } else {
