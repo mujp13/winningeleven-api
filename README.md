@@ -10,10 +10,10 @@ To run front-end or back-end tests, simply run "npm t" in the terminal.
 
 /api  
 .  
-├── /login
-│ └── POST
-├── /register
-│ └── POST
+├── /login  
+│ └── POST  
+├── /register  
+│ └── POST  
 ├── /newteam  
 | └── POST  
 │  
@@ -21,7 +21,7 @@ To run front-end or back-end tests, simply run "npm t" in the terminal.
 │ └── GET  
 ├── /teams/teamId  
 ├── /players  
-│ └── GET
+│ └── GET  
 └── /
 
 ## API Overview
