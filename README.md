@@ -1,31 +1,91 @@
-# Winning Eleven API Auth!
+## Winningeleven
 
-## Scripts
+Winningeleven is a back-end server for Winningeleven, the frontend.
 
-Start the application `npm start`
+## Running the tests
 
-Start nodemon for the application `npm run dev`
+To run front-end or back-end tests, simply run "npm t" in the terminal.
 
-Run the tests in watch mode `npm test`
+## API Overview
 
-Migrate the dev database `npm run migrate`
+/api  
+.  
+├── /login
+│ └── POST
+├── /register
+│ └── POST
+├── /newteam  
+| └── POST  
+│  
+├── /teams  
+│ └── GET  
+├── /teams/teamId  
+├── /players  
+│ └── GET
+└── /
 
-Migrate the test database `npm run migrate:test`
+## API Overview
 
-## Configuring Postgres
+## POST ### /login
 
-For tests involving time to run properly, configure your Postgres database to run in the UTC timezone.
+Gets the following information from a user for sing-in
 
-1. Locate the `postgresql.conf` file for your Postgres installation.
-   1. E.g. for an OS X, Homebrew install: `/usr/local/var/postgres/postgresql.conf`
-   2. E.g. on Windows, _maybe_: `C:\Program Files\PostgreSQL\11.2\data\postgresql.conf`
-2. Find the `timezone` line and set it to `UTC`:
+{  
+ user_name: text,  
+password: text  
+}
 
-```conf
-# - Locale and Formatting -
+## POST ### /register
 
-datestyle = 'iso, mdy'
-#intervalstyle = 'postgres'
-timezone = 'UTC'
-#timezone_abbreviations = 'Default'     # Select the set of available time zone
-```
+Gets the following information from a user for sing-up
+
+{  
+ full_name: text,  
+ user_name: text,  
+password: text,  
+nickname: text  
+}
+
+## POST ### /newteam
+
+Gets the following information from a user
+
+{  
+ team_id: integer,  
+player_id: integer  
+}
+
+## GET ### /teams
+
+Returns team names created by users
+
+{
+team_name: text  
+}
+
+## GET ### /teams/teamId
+
+Returns teams created by users
+
+{
+team_name: text,  
+ full_name: text,  
+ position: text  
+}
+
+## Screenshot
+
+![koffeeblog screenshot](https://github.com/mujp13/koffee_blog_fs/blob/master/github_screenshot.PNG)
+
+## Built With
+
+Node - Run-time environment  
+Express - Web application framework  
+Postgres DB - Database  
+Mocha - Testing  
+Chai - Testing  
+Javascript - Front-end development
+
+## Authors
+
+Keun Suk Park - Full-stack
